@@ -48,7 +48,7 @@ export interface CsUserService {
 
     getConsent(userConsent: Consent, config?: CsUserServiceConfig): Observable<ReadConsentResponse>;
 
-    getUserFeed(uid: string, config?: CsUserServiceConfig): Observable<UserFeedEntry[]>;
+    getUserFeed<T extends UserFeedCategory = any>(uid: string, config?: CsUserServiceConfig): Observable<UserFeedEntry<T>[]>;
 
     updateUserFeedEntry(
         uid: string, feedEntryId: string, category: UserFeedCategory, request: CsUpdateUserFeedRequest, config?: CsUserServiceConfig

@@ -47,6 +47,10 @@ export interface CsFormServiceConfig {
     apiPath: string;
 }
 
+export interface CsInAppNotificationServiceConfig {
+    apiPath: string;
+}
+
 export interface CsConfig {
     core: {
         httpAdapter?: 'HttpClientBrowserAdapter' | 'HttpClientCordovaAdapter';

@@ -1,3 +1,5 @@
+import { InAppNotification } from '../../models/in-app-notification';
+
 export interface User {
     id: string;
     userId: string;
@@ -89,11 +91,10 @@ export enum UserFeedStatus {
 }
 
 export enum UserFeedCategory {
-    ORG_MIGRATION_ACTION = 'OrgMigrationAction',
     NOTIFICATION = 'Notification'
 }
 
-export interface UserFeedEntry<T = any> {
+export interface UserFeedEntry<T extends UserFeedCategory = any> {
     identifier: string;
     userId: string;
     category: UserFeedCategory;
@@ -103,5 +104,9 @@ export interface UserFeedEntry<T = any> {
     channel: string;
     status: UserFeedStatus;
     expireOn: string;
-    data: T;
+    data: UserFeedEntryModelsMap[T];
+}
+
+export interface UserFeedEntryModelsMap {
+    'Notification': Exclude<InAppNotification, 'id' | 'displayTime' | 'expiry' | 'isRead'>;
 }
